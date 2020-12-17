@@ -16,6 +16,10 @@ import { ContactComponent } from './contact/contact.component';
 import { PieComponent } from './pie/pie.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { DataService } from './data.service';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { StorageServiceModule } from 'ngx-webstorage-service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +34,16 @@ import { DataService } from './data.service';
     P404Component,
     ContactComponent,
     PieComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    SignUpComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    StorageServiceModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

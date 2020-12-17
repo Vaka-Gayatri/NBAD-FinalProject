@@ -25,4 +25,4 @@ const budgetSchema = new mongoose.Schema({
     }
 }, {collection: 'budget'})
 
-module.exports =mongoose.model('budget', budgetSchema)
+module.exports = mongoose.model('budget', budgetSchema)
