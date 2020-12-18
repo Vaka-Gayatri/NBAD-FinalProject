@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
       console.log(data);
       if(data.err == null){
         localStorage.setItem('Token', data.token);
-        this.router.navigate(['/']);
+        localStorage.setItem('userData', JSON.stringify(data.userData));
+        this.router.navigate(['/dashboard']);
       } else {
          alert(data.err)
       }

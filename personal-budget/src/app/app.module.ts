@@ -20,6 +20,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddBudgetComponent } from './add-budget/add-budget.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -36,14 +39,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PieComponent,
     BreadcrumbsComponent,
     SignUpComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddBudgetComponent,
+    AddCategoryComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StorageServiceModule
+    StorageServiceModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

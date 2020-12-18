@@ -28,7 +28,8 @@ export class PieComponent implements AfterViewInit {
       this.createColors();
       this.drawChart();
     } else {
-    this.dataService.getData().subscribe((data: any) => {
+      let userData = JSON.parse(localStorage.getItem('userData'));
+    this.dataService.getBudgetById(userData).subscribe((data: any) => {
       console.log(data);
       this.data = data;
       this.createSvg();

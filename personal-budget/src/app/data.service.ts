@@ -19,6 +19,23 @@ export class DataService {
     return this.http.get('http://localhost:3000/budget');
   }
 
+  getBudgetById(userData: User) {
+    console.log(userData);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post('http://localhost:3000/budget_ById', userData,{
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  addBudget(budget: Budget, userData : User ){
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post('http://localhost:3000/add-budget', {budget, userData},{
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   createUser(user: User) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
@@ -35,7 +52,23 @@ export class DataService {
       headers: { 'Content-Type': 'application/json' },
     });
   }
+
+  updateUserCategory(userCategory: any, userData: any){
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post('http://localhost:3000/add-user-category', {userCategory, userData},{
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  getBarChartData(userData: any){
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post('http://localhost:3000/get_barGraphData', {userData});
+  }
+
 }
+
 
 interface User {
   UserID: string;
@@ -43,4 +76,11 @@ interface User {
   Email: string;
   FirstName: string;
   LastName: string;
+}
+
+interface Budget {
+  id: string;
+  title: string;
+  budget: Number;
+  color: string;
 }

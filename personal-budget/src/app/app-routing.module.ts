@@ -6,6 +6,9 @@ import { LoginComponent } from './login/login.component';
 import { P404Component } from './p404/p404.component';
 import { ContactComponent } from './contact/contact.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddBudgetComponent } from './add-budget/add-budget.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,18 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
+  },
+  {
+    path: 'add-budget',
+    component: AddBudgetComponent
+  },
+  {
+    path: 'add-category',
+    component: AddCategoryComponent
   },
   {
     path: 'sign-up',

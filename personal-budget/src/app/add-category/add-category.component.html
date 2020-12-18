@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2> Login </h2>
+      <form  [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <label for="categoryName">Category Name</label>
+        <input type="text" id="categoryName" class="form-control" placeholder="categoryName" formControlName="categoryName" required>
+        <br>
+        <label for="limitPerMonth">Limit Per Month</label>
+        <input type="limitPerMonth" id="limitPerMonth" class="form-control" placeholder="limitPerMonth" formControlName="limitPerMonth" required>
+        <br>
+        <input class="btn btn-dark mb-2" type="submit" value="ADD" [disabled]="!categoryForm.valid">
+        <br><br>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="push"></div>
+
