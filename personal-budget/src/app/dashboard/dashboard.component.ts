@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { AddBudgetComponent } from '../add-budget/add-budget.component';
 import { Chart } from 'chart.js';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -35,17 +36,16 @@ export class DashboardComponent implements OnInit {
 };
 
 newData = [];
-  constructor(private router : Router,private http: HttpClient, public dataService: DataService) { }
+  constructor(private router : Router,private http: HttpClient, public dataService: DataService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.getBudgetById();
-    this.data();
   }
 
 
  // tslint:disable-next-line: typedef
  createChart() {
-    const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('myChart') as HTMLCanvasElement;
     const myPieChart = new Chart(ctx, {
         type: 'pie',
         data: this.dataSource
@@ -72,30 +72,7 @@ newData = [];
       }
     });
   }
-  data() {
-    let userData = JSON.parse(localStorage.getItem('userData'));
-    this.dataService.getBarChartData(userData).subscribe((data: any) => {
-      let month = 11;
-      let year = 1969;
-      let cat = {}
-      userData.budgetCategories.forEach(element => {
-        cat[element.categoryName.toLowerCase()] = { 'limitPerMonth': element.limitPerMonth, 'BudgetUsed': 0}
-      });
-      data.forEach(element => {
-        let elem_month = new Date(element.createdAt).getMonth();
-        let elem_year = new Date(element.createdAt).getFullYear();
-        if(elem_month == month && elem_year == year){
-          try{
-            cat[element.title.toLowerCase()]['BudgetUsed'] += element.budget;
-          } catch {
-            console.log(element.title)
-          }
-          console.log(element.budget);
-        }
-      });
-      console.log(cat)
-    });
-  }
+
 
 
 }

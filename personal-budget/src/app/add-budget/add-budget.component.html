@@ -5,7 +5,7 @@
       <form  [formGroup]="addBudgetForm" (ngSubmit)="onSubmit()">
         <label for="title">Title</label>
         <select name="categories" id="categories" formControlName="title">
-          <option *ngFor='let category of userData.budgetCategories' value = categoryName>{{category.categoryName}}</option>
+          <option *ngFor='let category of userData.budgetCategories' [value] = category.categoryName >{{category.categoryName}}</option>
         </select>
         <br>
         <label for="budget">Budget</label>

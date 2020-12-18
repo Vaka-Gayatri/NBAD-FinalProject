@@ -29,19 +29,6 @@ const jwtMW = exjwt({
 });
 
 
-let users = [
-    {
-        id:1,
-        username:'Gayatri',
-        password: 'vaka123'
-    },
-    {
-        id:2,
-        username: 'Vaka',
-        password: '456'
-    }
-]
-
 //Part2: step2 Required to implement an additional endpoint in your server.
 
 //Part2: step4 You are required to use mongoose to interact with your database.
@@ -58,8 +45,7 @@ app.get('/budget', (req, res) => {
     })
 });
 
-app.post('/budget_ById', (req, res) => {
-    console.log(req.body.id);
+app.post('/budget_ById', jwtMW, (req, res) => {
     nameModel.find({createdBy: req.body.id})
     .then((data)=>{
         res.send(data);
@@ -70,8 +56,7 @@ app.post('/budget_ById', (req, res) => {
 });
 
 
-app.post('/add-budget', (req, res) => {
-    console.log(req.body);
+app.post('/add-budget', jwtMW, (req, res) => {
    //  res.send("added successfully");
    const id = Math.floor(Math.random()*(999-100+1)+100).toString() + 'tv' + Math.floor(Math.random()*(999-100+1)+100).toString();
     let newData = {id: id, title: req.body.budget.title, budget: req.body.budget.budget, color: req.body.budget.color, createdBy: req.body.userData.id, createdAt: new Date()}
@@ -87,8 +72,7 @@ app.post('/add-budget', (req, res) => {
 }) 
 
 
-app.post('/add-user-category', (req, res) => {
-    console.log(req.body);
+app.post('/add-user-category', jwtMW, (req, res) => {
    //  res.send("added successfully");
     req.body.userData.budgetCategories.push(req.body.userCategory);
     userModel.update({_id: req.body.userData._id}, req.body.userData, { upsert: true }, (err, data) => {
@@ -101,7 +85,7 @@ app.post('/add-user-category', (req, res) => {
 }) 
 
 
-app.post('/get_barGraphData', (req, res) => {
+app.post('/get_barGraphData', jwtMW, (req, res) => {
     nameModel.find({createdBy: req.body.userData.id})
     .then((data)=>{
         res.send(data);
@@ -112,12 +96,10 @@ app.post('/get_barGraphData', (req, res) => {
 })
 
 app.post('/register', async (req, res) => {
-    console.log(req.body);
     const id = Math.floor(Math.random()*(999-100+1)+100).toString() + 'tv' + Math.floor(Math.random()*(999-100+1)+100).toString();
     let newUser = {id: id, username: req.body.username, password: req.body.password, email: req.body.email, firstName: req.body.firstName, lastName: req.body.lastName}
     userModel.insertMany(newUser)
              .then((data)=>{
-                 console.log(data)
                  res.send(newUser)
                //   mongoose.connection.close();
              })
@@ -129,14 +111,11 @@ app.post('/register', async (req, res) => {
 
 
   app.post('/api/login',(req,res)=>{
-      console.log(req.body);
     const {username,password} = req.body;
 
     userModel.find({})
     .then((data)=>{
-        console.log(data);
         const user = data.find(u => u.username === username && u.password === password);
-        console.log(user.id);
         if (user === undefined) {
             res.json({
                 success:false,
@@ -145,7 +124,7 @@ app.post('/register', async (req, res) => {
             });
         } else{
     const token = jwt.sign({username: user.username}, secretKey, { expiresIn: '7d' });
-    console.log(token);
+
     res.json({
         success: true,
         err:null,
@@ -164,6 +143,9 @@ app.post('/register', async (req, res) => {
 }); 
 
 
+// app.post('/get-user', (req,res) => {
+//    res.send(jwt.decode(req.body.userToken, secretKey));
+// })
 app.listen(port, () => {
    console.log(` API served at http://localhost:${port}`);
 });

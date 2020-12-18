@@ -7,7 +7,7 @@ import { disableDebugTools } from '@angular/platform-browser';
 })
 export class DataService {
  dataSource =  [];
-
+ token = localStorage.getItem('Token')
   constructor(private http: HttpClient) {
    }
 
@@ -24,7 +24,7 @@ export class DataService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.post('http://localhost:3000/budget_ById', userData,{
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Authorization' : `Bearer ${this.token}` },
     });
   }
 
@@ -32,7 +32,7 @@ export class DataService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.post('http://localhost:3000/add-budget', {budget, userData},{
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json','Authorization' : `Bearer ${this.token}` },
     });
   }
 
@@ -57,14 +57,16 @@ export class DataService {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
     return this.http.post('http://localhost:3000/add-user-category', {userCategory, userData},{
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Authorization' : `Bearer ${this.token}`},
     });
   }
 
   getBarChartData(userData: any){
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
-    return this.http.post('http://localhost:3000/get_barGraphData', {userData});
+    return this.http.post('http://localhost:3000/get_barGraphData', {userData},{
+      headers: { 'Content-Type': 'application/json', 'Authorization' : `Bearer ${this.token}`},
+    });
   }
 
 }

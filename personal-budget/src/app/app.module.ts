@@ -23,6 +23,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddBudgetComponent } from './add-budget/add-budget.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
     AppRoutingModule,
     ReactiveFormsModule,
     StorageServiceModule,
+    ChartsModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
