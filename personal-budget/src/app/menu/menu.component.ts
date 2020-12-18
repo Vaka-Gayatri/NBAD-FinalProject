@@ -8,13 +8,18 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
+
   constructor(private router : Router) { }
 
   ngOnInit(): void {
+
+
   }
+
 
   logout(){
      localStorage.clear();
+     localStorage.setItem('logStatus', 'false');
      this.router.navigate(['/login']);
   }
 }
