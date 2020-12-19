@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    localStorage.clear();
     console.log(this.loginForm.value);
     this.dataService.userAuth(this.loginForm.value).subscribe((data: any)  => {
       console.log(data);

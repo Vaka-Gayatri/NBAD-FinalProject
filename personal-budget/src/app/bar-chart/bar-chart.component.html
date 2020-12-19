@@ -4,7 +4,7 @@
 
 <form  [formGroup]="addDateForm" (ngSubmit)="onSubmit()">
   <label for="month">Pick Month</label>
-  <select name="month" id="month" formControlName="month">
+  <select name="month" id="seceltOption" formControlName="month">
     <option *ngFor='let monthOne of months' [value] = monthOne>{{monthOne}}</option>
   </select>
   <br>

@@ -46,13 +46,14 @@ export class BarChartComponent  implements OnInit{
     month: new FormControl(''),
     year: new FormControl(''),
   });
-  pickMonth: any;
-  year: any;
+  pickMonth: number;
+  year: number;
 
 
   constructor(private dataService : DataService) {}
   ngOnInit(){
     this.data();
+
   }
 
   // CHART CLICK EVENT.

@@ -16,7 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
 
-let url = 'mongodb://localhost:27017/mongodb_demo';
+// let url = 'mongodb://localhost:27017/mongodb_demo';
+let url = 'mongodb+srv://Gayatri:vaka%402799@cluster0.eqrnf.mongodb.net/NBAD?authSource=admin&replicaSet=atlas-z4c3fg-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true'
 
 app.use('', express.static('public'));
 app.use(cors());
@@ -29,9 +30,6 @@ const jwtMW = exjwt({
 });
 
 
-//Part2: step2 Required to implement an additional endpoint in your server.
-
-//Part2: step4 You are required to use mongoose to interact with your database.
 mongoose.connect(url,  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } )
 
 app.get('/budget', (req, res) => {

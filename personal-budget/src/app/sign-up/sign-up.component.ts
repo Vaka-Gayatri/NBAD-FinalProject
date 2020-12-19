@@ -30,7 +30,7 @@ export class SignUpComponent implements OnInit {
     this.dataService.createUser(this.registerForm.value).subscribe((data: any) => {
       if (Object.keys(data).length > 0 ){
         console.log("successfully registered");
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       }
     });
   }

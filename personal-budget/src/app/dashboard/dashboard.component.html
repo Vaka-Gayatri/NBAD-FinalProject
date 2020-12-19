@@ -1,7 +1,10 @@
-<button style="float: right;" (click)="navigateToAddBudget()">ADD BUDGET</button>
+<h1> Please enter your budget Limit first and then Budget details</h1>
 
-<button style="float: right;" (click)="navigateToAddCategory()">ADD LIMIT</button>
-<h1 *ngIf="!(this.dataSource.labels.length > 0)"> Please enter your budget details</h1>
+<button class="budgetButtuns" (click)="navigateToAddCategory()">ADD LIMIT</button>
+<button class="budgetButtuns" (click)="navigateToAddBudget()"  >ADD BUDGET</button>
+
+
+
 <div class="container">
   <pb-bar-chart></pb-bar-chart>
 

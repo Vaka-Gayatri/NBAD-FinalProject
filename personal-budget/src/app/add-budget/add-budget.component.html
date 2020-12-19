@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h2> Register </h2>
+      <h2> Add Budget</h2>
       <form  [formGroup]="addBudgetForm" (ngSubmit)="onSubmit()">
-        <label for="title">Title</label>
-        <select name="categories" id="categories" formControlName="title">
+        <label for="title">Category</label>
+        <select name="categories" id="seceltOption" formControlName="title">
           <option *ngFor='let category of userData.budgetCategories' [value] = category.categoryName >{{category.categoryName}}</option>
         </select>
         <br>
